@@ -24,13 +24,12 @@ export const Frame = ({url, width = undefined, height=undefined, config = {}  }:
         switch (true) {
             case link.includes('youtube.com'):
             case link.includes('youtu.be'):
-                // return setYouTubeLink(URLS_BASE, parsed);
                 return <></>
             // vimeo
             case link.includes('vimeo'):
                 return <VimeoPlayer link={link} width={width} height={height} config={config}/>
             default:
-                return <></>
+                return <><h1>Not supported</h1></>
         }
     }
 

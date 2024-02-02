@@ -3,6 +3,16 @@
     "plugins": ["@typescript-eslint"],
     "extends": ["plugin:@typescript-eslint/recommended"],
     "rules": {
-      "@typescript-eslint/no-var-requires": "warn"
+      "@typescript-eslint/no-var-requires": "warn", 
+      "testing-library/no-debugging-utils": [
+        "error",
+        {
+          "utilsToCheckFor": {
+            "debug": false,
+            "logRoles": true,
+            "logDOM": true
+          }
+        }
+      ]
     }
   }
