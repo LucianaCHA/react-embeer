@@ -11,8 +11,7 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@testing-library/jest-dom": "^5.17.0",
@@ -23,8 +22,11 @@
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "@types/vimeo__player": "^2.18.3",
+    "jest-fetch-mock": "^3.0.3",
     "node-sass": "^7.0.3",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
