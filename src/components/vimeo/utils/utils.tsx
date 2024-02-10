@@ -10,7 +10,9 @@ export const setVimeoLink = (host :IUrlDataKeys, url: IUrlData) => {
 
     if(!isValidPathname) throw new Error('Invalid pathname URL');
 
-    return host.vimeo + url.pathname +'?h=' +isValidSearch;
 
-    // return <VimeoPlayer link={theUrl} width={width} height={height} config={config}/>
+
+    return host.vimeo + url.pathname +'?h=' +isValidSearch;
   }
+
+  export const SRC_REGEX = /src="([^"]+)"/;

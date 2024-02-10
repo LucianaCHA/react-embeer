@@ -1,4 +1,5 @@
 import VimeoPlayer from "components/vimeo/vimeo-player";
+import { YoutubePlayer } from "components/youtube/youtube-player";
 
 type ConfigProps = {
     autoplay: boolean;
@@ -24,13 +25,12 @@ export const Frame = ({url, width = undefined, height=undefined, config = {}  }:
         switch (true) {
             case link.includes('youtube.com'):
             case link.includes('youtu.be'):
-                // return setYouTubeLink(URLS_BASE, parsed);
-                return <></>
+                return <YoutubePlayer link={link} width={width} height={height} config={config}/>
             // vimeo
             case link.includes('vimeo'):
                 return <VimeoPlayer link={link} width={width} height={height} config={config}/>
             default:
-                return <></>
+                return <><h1>Not supported</h1></>
         }
     }
 

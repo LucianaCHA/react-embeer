@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
 import { URLS_BASE } from 'constants/constants';
+import { useEffect, useState } from 'react';
 import { setUrlData } from 'utils/utils';
-import { setVimeoLink } from './utils';
+import { SRC_REGEX, setVimeoLink } from './utils/utils';
+import { LoadingComponent } from 'components/loading/loading';
+import { ErrorComponent } from 'components/error/error';
 
-import './styles.scss'
+import './styles.scss';
 
 type ConfigProps = {
     autoplay: boolean;
@@ -35,11 +37,11 @@ const defaultConfig = {
     title: true,
 }
 
-const VimeoPlayer = ({ 
-    link, width, height,config}: VimeoPlayerProps) => {
+const VimeoPlayer = ({
+    link, width, height, config }: VimeoPlayerProps) => {
     const [video, setVideo] = useState<any>(null)
-    const [error, setError] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const finalConfig = { ...defaultConfig, ...config }
 
@@ -58,34 +60,30 @@ const VimeoPlayer = ({
             throw new Error('Invalid URL');
         }
     }
-    
-    const vimeoLink = setVimeoLink(URLS_BASE, setUrlData(link));
 
     useEffect(() => {
-        setLoading(true)
-        getUrlData(vimeoLink).then((data) => {
-            setVideo(data)
-        })
-    }, [vimeoLink])
+        setLoading(true);
+        try {
+            const vimeoLink = setVimeoLink(URLS_BASE, setUrlData(link));
+            getUrlData(vimeoLink).then((data) => {
+                setVideo(data);
+                setLoading(false);
+            });
+        } catch (error: any) {
+            setError(true);
+            setLoading(false);
+        }
+    }, [link]);
 
 
-
-    const loadingComponent = (<div >
-        <h1>LOADING</h1></div>)
-
-    const errorComponent = (<div >
-        <h1>ERROR</h1></div>)
-
-
-    const srcRegex = /src="([^"]+)"/;
     return (
         <>
             {
                 loading
-                    ? loadingComponent
+                    ? <LoadingComponent />
                     : error
-                        ? errorComponent
-                        : video && <iframe key={video.video_id}  src={video?.html.match(srcRegex)[1]} width={video?.width} height={video?.height} title={video?.title} ></iframe>
+                        ? <ErrorComponent />
+                        : video && <iframe key={video.video_id} src={video?.html.match(SRC_REGEX)[1]} width={video?.width} height={video?.height} title={video?.title} ></iframe>
             }
         </>
     )
