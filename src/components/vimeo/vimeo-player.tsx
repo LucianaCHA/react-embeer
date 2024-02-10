@@ -2,6 +2,8 @@ import { URLS_BASE } from 'constants/constants';
 import { useEffect, useState } from 'react';
 import { setUrlData } from 'utils/utils';
 import { SRC_REGEX, setVimeoLink } from './utils/utils';
+import { LoadingComponent } from 'components/loading/loading';
+import { ErrorComponent } from 'components/error/error';
 
 import './styles.scss';
 
@@ -74,20 +76,13 @@ const VimeoPlayer = ({
     }, [link]);
 
 
-    //TODO add loading and error components
-    const loadingComponent = (<div >
-        <h1>LOADING</h1></div>)
-
-    const errorComponent = (<div >
-        <h1>ERROR</h1></div>)
-
     return (
         <>
             {
                 loading
-                    ? loadingComponent
+                    ? <LoadingComponent />
                     : error
-                        ? errorComponent
+                        ? <ErrorComponent />
                         : video && <iframe key={video.video_id} src={video?.html.match(SRC_REGEX)[1]} width={video?.width} height={video?.height} title={video?.title} ></iframe>
             }
         </>

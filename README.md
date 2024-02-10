@@ -45,3 +45,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+
+YOUTUBE 
+PIDE UN  MINIMO DE 480 X 270 SI NO RECIBE PARAMS VA CONESTO 
+no es posible oculaar el avatar
+no es posible ocultar el logo 
+no es 
+posible ocultar el titulo 
+
+si se setea en true responsive se toma el width y el heigh como maximos para el frmae 
